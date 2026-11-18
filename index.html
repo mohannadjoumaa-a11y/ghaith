@@ -1,0 +1,351 @@
+<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>غيث — آسيا مهند آل جمعة</title><style>
+*{box-sizing:border-box}body{margin:0;background:#e9eee8;color:#17332e;font-family:"Segoe UI",Tahoma,sans-serif}.shell{max-width:1400px;margin:auto;padding:24px}.head{display:flex;justify-content:space-between;align-items:end;gap:18px;flex-wrap:wrap;margin-bottom:18px}h1{margin:0;font-size:clamp(25px,4vw,44px);line-height:1.2}p{margin:8px 0 0;color:#435f58}.grid{display:grid;grid-template-columns:minmax(0,1fr) 285px;gap:16px}.scene{position:relative;min-height:430px;height:min(72vh,730px);background:radial-gradient(ellipse at 50% 32%,#fcfdf9,#dbe7df);border:1px solid #c4d2c9;border-radius:18px;overflow:hidden}canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}canvas:active{cursor:grabbing}.camera{position:absolute;bottom:12px;left:12px;display:flex;gap:6px}.panel{background:#fbfdf9;border:1px solid #c4d2c9;border-radius:18px;padding:17px}button{font:inherit;font-weight:650;cursor:pointer;color:#17332e;background:white;border:1px solid #b8cfc5;border-radius:8px;padding:8px 11px}button:hover,button[aria-pressed=true]{background:#d8efe6}button:focus-visible{outline:3px solid #168d91;outline-offset:2px}.control{display:grid;grid-template-columns:1fr 1fr;gap:7px}.control button:first-child{grid-column:span 2;background:#185f57;color:#fff;border-color:#185f57}.status{margin:15px 0 10px;min-height:2.8em;font-size:14px;color:#34544c}progress{width:100%;height:12px;accent-color:#088fa9}.volume{display:flex;justify-content:space-between;font-size:13px;font-weight:650}ol{list-style:none;padding:0;margin:15px 0 0;display:grid;gap:6px}li button{width:100%;text-align:right;font-size:14px}li b{color:#087b91;margin-left:5px}#detail{min-height:3em;font-size:14px}.badge{position:absolute;top:12px;right:12px;background:#fafffaee;border:1px solid #c2d6ca;border-radius:8px;padding:7px 10px;font-size:13px;pointer-events:none}@media(max-width:740px){.shell{padding:12px}.grid{grid-template-columns:1fr}.scene{height:53vh;min-height:340px}.camera button{padding:5px 8px}.head{margin-bottom:12px}}
+
+body{background:#f3f4ed}.shell{max-width:1450px}.head{align-items:center}.head h1{font-size:48px;color:#205f59}.student{line-height:1.9;font-size:14px}.intro{font-size:15px;line-height:1.8;max-width:760px;margin:0 0 16px}.grid{grid-template-columns:minmax(0,1fr) 300px}.scene{height:70vh;min-height:440px;background:radial-gradient(ellipse at 45% 25%,#fffefa,#dce7e0)}button{min-height:44px;touch-action:manipulation}#detail{line-height:1.8}.camera{flex-wrap:wrap;max-width:95%;bottom:12px}.badge{max-width:75%}dialog{border:1px solid #bdcfc3;border-radius:18px;max-width:530px;width:calc(100% - 32px);padding:24px;color:#17332e;background:#fbfdf9;line-height:1.9}dialog::backdrop{background:#163e3c88}dialog h2{margin:0 0 12px}dialog p{color:#17332e;margin:12px 0}.hint{font-size:13px;color:#56736b}.control button:first-child{grid-column:span 2}@media(max-width:900px){.grid{grid-template-columns:1fr}.scene{height:56svh;min-height:350px}.panel{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px}.control{grid-row:span 4}.status{margin:0}ol{margin:0}.head h1{font-size:40px}.student{font-size:13px}}@media(max-width:520px){.head{display:block}.student{margin-top:8px}.intro{font-size:14px;margin-bottom:10px}.scene{height:49svh;min-height:310px}.panel{display:block;padding:12px}.control{grid-template-columns:1fr 1fr 1fr}.control button:first-child{grid-column:span 3}.control button{font-size:13px;padding:7px}.status{margin-top:12px;min-height:2em}.camera{gap:4px}.camera button{font-size:12px;padding:5px 8px}ol{grid-template-columns:1fr 1fr;margin-top:10px}li button{font-size:12px}.badge{font-size:12px}.head p{margin-top:3px}}
+ .scene.expanded{position:fixed;inset:0;z-index:20;height:100dvh;border-radius:0}.scene:fullscreen{height:100dvh;width:100vw;background:#e5eee8}</style><main class="shell"><header class="head"><div><h1>غيث</h1><p>نجمع المطر لنروي النبات</p></div><div class="student"><strong>إعداد الطالبة آسيا مهند آل جمعة</strong><br>الصف السابع الثالث · مدرسة نجية بنت عامر الحجرية</div></header><p class="intro">يجمع المشروع مياه المطر في حوض مائل فوق المنزل، وينقلها إلى خزّان لحفظها واستخدامها لاحقًا في ري النباتات. مجسّم من مواد منزلية أعيد استخدامها.</p><div class="grid"><section class="scene"><canvas tabindex="0" aria-label="مجسّم غيث ثلاثي الأبعاد. اسحب للدوران أو استخدم مفاتيح الأسهم"></canvas><div class="badge" id="view">اسحب للدوران · قرّب بإصبعين</div><div class="camera"><button id="zoomIn" aria-label="تقريب">＋</button><button id="zoomOut" aria-label="إبعاد">−</button><button id="topView">من الأعلى</button><button id="homeView">المنظور الأول</button><button id="fullscreen">ملء الشاشة</button></div></section><aside class="panel"><div class="control"><button id="demo">شغّل التجربة كاملة</button><button id="rain" aria-pressed="false">شغّل المطر</button><button id="water" aria-pressed="false">افتح الري</button><button id="reset">إعادة التجربة</button><button id="rotate" aria-pressed="false">دوران تلقائي</button><button id="benefit">فائدة المشروع</button></div><div id="status" class="status" role="status">ابدأ بالمطر، أو شغّل التجربة كاملة.</div><div><div class="volume"><span>امتلاء الخزّان</span><span id="percent">٠٪</span></div><progress id="level" max="100" value="0" aria-label="امتلاء الخزّان"></progress></div><ol id="parts"><li><button data-part="0">١ · البيت</button></li><li><button data-part="1">٢ · حوض التجميع</button></li><li><button data-part="2">٣ · أنبوب النقل</button></li><li><button data-part="3">٤ · خزّان المياه</button></li><li><button data-part="4">٥ · أنبوب الري</button></li><li><button data-part="5">٦ · النبتة</button></li></ol><p id="detail" aria-live="polite">اضغط اسم أي جزء لتعرف وظيفته.</p><p class="hint">الأبعاد مقدّرة من صور المجسّم. حركة الماء محاكاة توضيحية.</p></aside></div></main><dialog id="about"><h2>كيف يساعد مشروع غيث؟</h2><p><strong>المشكلة</strong><br>تهطل الأمطار خلال فترة محدودة، وتجري كمية من مياهها دون الاستفادة منها، بينما تحتاج النباتات إلى الري بعد توقّف المطر.</p><p><strong>الحل</strong><br>جمع مياه المطر في حوض مائل، ونقلها إلى خزّان، ثم استخدامها لري التربة عند الحاجة.</p><p><strong>الفائدة</strong><br>الاستفادة من مياه المطر، وتقليل استخدام مياه الشبكة للري، وإعادة استخدام القناني والكرتون ووعاء الزراعة.</p><button id="closeAbout">العودة إلى المجسّم</button></dialog><script>
+'use strict';
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+const get = id => document.getElementById(id);
+const TAU = 2 * Math.PI;
+const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
+const mix = (a,b,t) => a.map((v,i)=> v+(b[i]-v)*t);
+const sub = (a,b) => a.map((v,i)=>v-b[i]);
+const dot = (a,b) => a.reduce((sum,v,i)=>sum+v*b[i],0);
+const cross = (a,b) => [a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+const unit = a => a.map(v=>v/(Math.hypot(...a)||1));
+let faces=[], ground=[];
+function face(points,color,alpha=1,flat=false){
+  const normal=unit(cross(sub(points[1],points[0]),sub(points[2],points[0])));
+  const glow=flat?1:0.7+0.3*Math.abs(dot(normal,unit([-.45,1,.55])));
+  faces.push({points,normal,material:color,color:'rgb('+color.map(v=>Math.round(v*glow)).join(',')+')',alpha});
+}
+function box(x,y,z,w,h,d,c){
+  const p=[[x,y,z],[x+w,y,z],[x+w,y,z+d],[x,y,z+d],[x,y+h,z],[x+w,y+h,z],[x+w,y+h,z+d],[x,y+h,z+d]];
+  for(const f of [[0,1,2,3],[4,7,6,5],[0,4,5,1],[1,5,6,2],[2,6,7,3],[3,7,4,0]]) face(f.map(i=>p[i]),c);
+}
+function tube(a,b,r1,r2,color,alpha=1,ends=true,n=16){
+  const d=unit(sub(b,a)), u=unit(cross(d,Math.abs(d[1])>.8?[1,0,0]:[0,1,0])), v=cross(d,u);
+  const ring=(center,r)=>Array.from({length:n},(_,i)=>center.map((q,j)=>q+r*(u[j]*Math.cos(TAU*i/n)+v[j]*Math.sin(TAU*i/n))));
+  const low=ring(a,r1),high=ring(b,r2);
+  for(let i=0;i<n;i++){const j=(i+1)%n;face([low[i],low[j],high[j],high[i]],color,alpha);}
+  if(ends){face(low,color,alpha);face(high,color,alpha);}
+}
+const cardboard=[186,142,96],board=[240,240,230],roof=[246,245,240],plastic=[186,212,224],blue=[31,166,207],soil=[67,56,43],paper=[239,238,233];
+const tankX=.68,tankZ=.66,tankY=.49,tankR=.285,tankH=1.18;
+const gutterX=-.26,gutterZ=.66;
+const gutterY=z=>2.37;
+const roofY=x=>2.36;
+const basinY=x=>2.48+(.10-x)*.23;
+const down=[[.11,2.48,.66],[.40,2.27,.66],[tankX,2.16,tankZ],[tankX,1.97,tankZ]];
+const hose=[[.95,.64,.66],[1.3,.59,.70],[1.67,.55,.75],[2.12,.49,.79],[2.12,.45,.79]];
+const fixedParts=[
+{p:[-1.44,1.3,1.16],title:'البيت',info:'بيت من الكرتون المغطّى بالورق، يمثّل منزلًا نستفيد من المطر الساقط فوقه.'},
+{p:[-.93,2.88,.66],title:'حوض التجميع',info:'حوض بلاستيكي شفاف مائل يستقبل المطر ويوجّه الماء إلى الطرف المنخفض.'},
+{p:[.40,2.27,.66],title:'أنبوب النقل',info:'ينقل مياه المطر من الحوض إلى القنينة.'},
+{p:[tankX,1.26,tankZ+.28],title:'خزّان المياه',info:'قنينة مستعملة تخزّن الماء لاستخدامه بعد توقّف المطر.'},
+{p:[1.57,.56,.73],title:'أنبوب الري',info:'يوصل الماء المخزّن إلى التربة عند فتح الري.'},
+{p:[2.22,.89,.83],title:'النبتة',info:'تستفيد النبتة من الماء المخزّن، فيقلّ اعتماد الري على مياه الشبكة.'}];
+function windowPane(x,y,z,side=false){
+  const p=(u,v)=>side?[x,y+v,z+u]:[x+u,y+v,z];
+  face([p(0,0),p(.55,0),p(.55,.61),p(0,.61)],[45,45,48]);
+  for(let row=0;row<2;row++)for(let col=0;col<2;col++){
+    const u=.04+col*.265,v=.04+row*.295;
+    const q=(a,b)=>p(a,b).map((n,i)=>n+(i===(side?0:2)?.006:0));
+    face([q(u,v),q(u+.22,v),q(u+.22,v+.25),q(u,v+.25)],[183+row*12,190+row*9,200]);
+  }
+}
+function build(){
+box(-3.05,-.12,-1.65,6.05,.18,3.55,board);ground=faces;faces=[];
+box(-2.7,.06,-1.3,2.94,2.30,2.46,paper);
+box(-2.72,2.36,-1.32,2.98,.025,2.5,roof);
+// Paper seams on the flat handmade roof.
+box(-1.25,2.388,-1.3,.007,.003,2.46,[195,194,188]);
+box(-2.7,2.388,-.08,2.92,.003,.007,[195,194,188]);
+box(-1.32,.06,1.164,.55,1.28,.013,[48,45,46]);
+tube([-.83,.69,1.186],[-.83,.69,1.20],.019,.019,[196,193,180]);
+windowPane(-2.37,.77,1.176);windowPane(.247,.95,-.5,true);windowPane(-2.2,.88,-1.307);
+// Printed decorative vine and small shrubs on the front wall.
+for(let j=0;j<4;j++){
+  const cy=.42+j*.45,cx=-.29+(j%2)*.08;
+  for(let i=0;i<26;i++){
+    const a=i*.25,r=.12*(1-i/32),b=(i+1)*.25,r2=.12*(1-(i+1)/32);
+    tube([cx+Math.cos(a)*r,cy+Math.sin(a)*r,1.181],[cx+Math.cos(b)*r2,cy+Math.sin(b)*r2,1.181],.008,.008,[90,94,75],1,false,4);
+  }
+}
+for(const cx of [-2.34,-1.79])for(let i=0;i<20;i++){
+ const a=i*2.4,r=.04+((i*7)%13)*.012;
+ const x=cx+Math.cos(a)*r,y=.2+Math.sin(a)*r*.75;
+ tube([x,y,1.181],[x,y,1.193],.045,.045,[92+(i%4)*15,108+(i%3)*12,62],1,true,6);
+}
+// Stone-print pathway.
+for(let i=0;i<5;i++)for(let j=0;j<4;j++)box(-1.37+j*.15,.065,1.18+i*.13,.139,.005,.12,[151+(i*j%5)*12,122+(i%3)*12,104+(j%3)*12]);
+// Cardboard triangular support under the transparent collection trough.
+face([[-.43,2.39,.39],[.14,2.39,.39],[-.43,2.64,.39]],cardboard);
+face([[-.43,2.39,.93],[.14,2.39,.93],[-.43,2.64,.93]],cardboard);
+face([[-.43,2.64,.39],[.14,2.39,.39],[.14,2.39,.93],[-.43,2.64,.93]],cardboard);
+// Long rounded open trough on the roof, high at left and low at right.
+for(let i=0;i<18;i++){
+ const a=Math.PI+i*Math.PI/18,b=a+Math.PI/18;
+ const p=(x,t)=>[x,basinY(x)+.22+.22*Math.sin(t),.66+.32*Math.cos(t)];
+ face([p(-2.34,a),p(.12,a),p(.12,b),p(-2.34,b)],plastic,.23);
+}
+for(const x of [-2.34,.12]){
+ const points=Array.from({length:19},(_,i)=>[x,basinY(x)+.22+.22*Math.sin(Math.PI+i*Math.PI/18),.66+.32*Math.cos(Math.PI+i*Math.PI/18)]);
+ face(points,plastic,.27);
+}
+for(const z of [.34,.98])tube([-2.34,basinY(-2.34)+.22,z],[.12,basinY(.12)+.22,z],.014,.014,plastic,.7,false,6);
+for(let i=0;i<down.length-1;i++)tube(down[i],down[i+1],.034,.034,plastic,.5);
+// Hollow cardboard bottle support.
+box(.29,.06,.26,.08,.43,.80,cardboard);box(.99,.06,.26,.08,.43,.80,cardboard);box(.29,.43,.26,.78,.06,.80,cardboard);
+tube([tankX,tankY,tankZ],[tankX,1.71,tankZ],tankR,tankR,plastic,.15,false,28);
+tube([tankX,1.71,tankZ],[tankX,1.89,tankZ],tankR,.13,plastic,.2,false,28);
+tube([tankX,1.89,tankZ],[tankX,1.98,tankZ],.14,.14,[27,40,79],1,true,24);
+for(let y=.58;y<1.70;y+=.105)tube([tankX,y,tankZ],[tankX,y+.024,tankZ],.293,.293,plastic,.28,false,24);
+for(let i=0;i<hose.length-1;i++)tube(hose[i],hose[i+1],.026,.026,plastic,.6);
+tube([2.04,.49,.79],[2.11,.49,.79],.055,.055,[203,56,35]);
+tube([.46,2.18,.66],[.46,2.21,.66],.045,.045,[200,65,33]);
+// Reused glass jar, dark soil and rosemary-like sprigs.
+tube([2.24,.07,.86],[2.24,.45,.86],.34,.35,plastic,.2,false,28);
+tube([2.24,.08,.86],[2.24,.35,.86],.31,.32,soil,1,true,24);
+tube([2.24,.43,.86],[2.24,.48,.86],.35,.35,plastic,.5,false,28);
+tube([2.24,.36,.86],[2.24,.43,.86],.16,.14,[166,161,143]);
+for(let branch=0;branch<4;branch++){
+ const root=[2.25,.39,.89],tip=[2.15+(branch-.9)*.22,1.03+branch*.18,.80+(branch%2)*.19];
+ tube(root,tip,.014,.008,[80,90,61]);
+ for(let i=1;i<9;i++){
+ const p=mix(root,tip,i/9);
+ for(const side of [-1,1]){
+ const end=[p[0]+side*.13,p[1]+.11,p[2]+(branch%2?side*.035:side*.07)];
+ face([p,[end[0],end[1],end[2]],[p[0]+side*.055,p[1]+.025,p[2]+.012]],[87,108,79]);
+ }
+ }
+}
+}
+build();
+const model=faces;
+let yaw=.40,pitch=.43,zoom=1,spin=false,width=0,height=0;
+let raining=false,watering=false,amount=0,runoff=0,demo=-1,t=0,selected=-1,phase='ابدأ بالمطر، أو شغّل التجربة كاملة.';
+let pointer=null;
+const view=get('view');
+const camera=()=>{
+  const cy=Math.cos(yaw),sy=Math.sin(yaw), cp=Math.cos(pitch),sp=Math.sin(pitch);
+  return {right:[cy,0,-sy],up:[-sy*sp,cp,-cy*sp],front:[sy*cp,sp,cy*cp]};
+};
+function project(p,basis){
+  const q=sub(p,[.12,1.05,0]), z=dot(q,basis.front);
+  const scale=Math.min(width/7.9,height/5.7)*zoom*14/(14-z);
+  return [width*.5+dot(q,basis.right)*scale,height*.52-dot(q,basis.up)*scale,z];
+}
+function makeGrain(material,kind){
+  const sample=document.createElement('canvas');
+  sample.width=sample.height=128;
+  const ink=sample.getContext('2d');
+  let seed=137;
+  const random=()=>{seed=(1664525*seed+1013904223)>>>0;return seed/4294967296;};
+  ink.fillStyle='rgb('+material.join(',')+')';ink.fillRect(0,0,128,128);
+  for(let i=0;i<4200;i++){
+    const light=random()>.46;
+    const strength=random()*(kind==='soil'?.34:kind==='roof'?.08:.19);
+    ink.fillStyle='rgba('+(light?'255,244,221':'41,25,14')+','+strength+')';
+    const x=random()*128,y=random()*128;
+    ink.fillRect(x,y,kind==='soil'?1+random()*4:.45+random()*5,kind==='soil'?1+random()*3:.55+random()*1.2);
+  }
+  if(kind==='roof'){
+    ink.strokeStyle='rgba(255,255,255,.10)';ink.lineWidth=.65;
+    for(let i=0;i<32;i++){
+      const x=random()*122,y=random()*128;
+      ink.beginPath();ink.moveTo(x,y);ink.lineTo(x+4+random()*19,y+random()*4);ink.stroke();
+    }
+  }
+  return ctx.createPattern(sample,'repeat');
+}
+const grains=new Map([[cardboard,makeGrain(cardboard,'paper')],[board,makeGrain(board,'paper')],[roof,makeGrain(roof,'roof')],[soil,makeGrain(soil,'soil')]]);
+function paintGrain(f){
+  const [a,b]=f.points,c=f.points[f.points.length-1];
+  const u=sub(f.world[1],f.world[0]),v=sub(f.world[f.world.length-1],f.world[0]);
+  const length=Math.hypot(...u),along=dot(v,unit(u)),across=Math.hypot(...cross(unit(u),v));
+  if(length<.0001||across<.0001)return;
+  const density=f.material===soil?230:155;
+  const xx=(b[0]-a[0])/(length*density),xy=(b[1]-a[1])/(length*density);
+  const yx=(c[0]-a[0]-xx*along*density)/(across*density),yy=(c[1]-a[1]-xy*along*density)/(across*density);
+  ctx.save();ctx.clip();ctx.transform(xx,xy,yx,yy,a[0],a[1]);
+  ctx.globalAlpha=.64;ctx.fillStyle=grains.get(f.material);
+  ctx.fillRect(-1800,-400,4200,1900);ctx.restore();
+}
+function drawShadows(basis){
+  for(const [x,z,sx,sz,opacity] of [[-1.22,.07,1.65,1.27,.27],[.96,.66,.63,.62,.24],[2.67,.62,.48,.4,.25]]){
+    for(let i=0;i<9;i++){
+      const scale=1-i*.058;
+      ctx.fillStyle='rgba(47,42,27,'+(opacity/9)+')';
+      ctx.beginPath();
+      for(let j=0;j<30;j++){
+        const theta=TAU*j/30;
+        const [px,py]=project([x+Math.cos(theta)*sx*scale,.053,z+Math.sin(theta)*sz*scale],basis);
+        if(j)ctx.lineTo(px,py);else ctx.moveTo(px,py);
+      }
+      ctx.closePath();ctx.fill();
+    }
+  }
+}
+function drawFaces(group,basis){
+  const ordered=group.map(f=>{
+    const points=f.points.map(p=>project(p,basis));
+    return {...f,world:f.points,points,z:points.reduce((s,p)=>s+p[2],0)/points.length};
+  }).sort((a,b)=>a.z-b.z);
+  for(const f of ordered){
+    ctx.globalAlpha=f.alpha;
+    ctx.fillStyle=f.color;
+    ctx.beginPath();
+    f.points.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));
+    ctx.closePath();ctx.fill();
+    if(grains.has(f.material))paintGrain(f);
+    if(f.material===plastic||f.material===blue){
+      const angle=Math.abs(dot(f.normal,basis.front));
+      const shine=Math.pow(Math.abs(dot(f.normal,unit([-.55,.8,.48]))),12);
+      ctx.fillStyle=f.material===plastic
+        ? 'rgba(250,255,255,'+(.22*shine+.13*(1-angle)**3)+')'
+        : 'rgba(161,233,249,'+(.22*shine)+')';
+      ctx.fill();
+    }
+    if(f.alpha===1){ctx.strokeStyle=f.color;ctx.lineWidth=.65;ctx.stroke();}
+  }
+  ctx.globalAlpha=1;
+}
+const fraction=n=>n-Math.floor(n);
+function bead(a,b,r=.021){
+  tube(a,b,r,r,blue,.9,true,5);
+}
+function trace(route,progress){
+  const k=clamp(progress,0,.99999)*(route.length-1);
+  return mix(route[Math.floor(k)],route[Math.floor(k)+1],fraction(k));
+}
+function waterEffects(){
+  const h=amount*tankH;
+  if(h>.004) tube([tankX,tankY+.01,tankZ],[tankX,tankY+h,tankZ],.255,.265,blue,.85,true,28);
+  if(raining)for(let i=0;i<36;i++){
+ const x=-2.28+2.32*fraction(i*.618),z=.39+.53*fraction(i*.389);
+ const y=basinY(x)+.12+1.3*fraction(i*.137-t*1.28);
+ bead([x,y,z],[x,y+.085,z],.013);
+ }
+ if(runoff>0){
+ for(let i=0;i<20;i++){
+ const x=-2.29+2.38*fraction(t*.63+i*.121);
+ bead([x,basinY(x)+.016,.66],[x+.06,basinY(x+.06)+.016,.66],.018);
+ }
+ for(let i=0;i<7;i++){
+ const q=fraction(t*1.45+i/7);bead(trace(down,q),trace(down,q+.023),.018);
+ }
+ }
+  if(watering&&amount>0){
+    for(let i=0;i<5;i++){
+      const q=fraction(t*1.5+i/5);
+      bead(trace(hose,q),trace(hose,q+.021),.021);
+    }
+    const y=.43-.045*fraction(t*4);
+    bead([2.12,y,.79],[2.12,y+.023,.79],.018);
+  }
+}
+function marker(basis){
+  if(selected<0)return;
+  const [x,y]=project(fixedParts[selected].p,basis);
+  ctx.strokeStyle='#07585c'; ctx.fillStyle='#eefff8';ctx.lineWidth=2;
+  ctx.beginPath();ctx.arc(x,y,15,0,TAU);ctx.fill();ctx.stroke();
+  ctx.fillStyle='#07585c';ctx.font='bold 15px Segoe UI';
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String(selected+1),x,y);
+}
+function zoomBy(n){zoom=clamp(zoom*n,.55,2.45);}
+function setPhase(value){if(phase!==value){phase=value;get('status').textContent=value;}}
+function reset(){
+  demo=-1;raining=false;watering=false;amount=0;runoff=0;
+  setPhase('الخزّان فارغ. شغّل المطر لتبدأ.');
+}
+function update(dt){
+  t+=dt;if(spin)yaw+=dt*.52;
+  if(demo>=0){
+    demo+=dt;
+    if(demo<6){raining=true;watering=false;setPhase('المطر ينزل على السقف والماء يتجمّع في الخزّان.');}
+    else if(demo<8){raining=false;watering=false;setPhase('توقّف المطر، والماء محفوظ في الخزّان.');}
+    else{raining=false;watering=amount>0;setPhase(watering?'الماء المخزّن يروي التربة.':'انتهت التجربة ووصل الماء إلى النبتة.');if(!watering)demo=-1;}
+  }
+  runoff=raining?1:Math.max(0,runoff-dt*1.45);
+  amount=clamp(amount+runoff*dt*.118-(watering?dt*.098:0),0,1);
+  if(demo<0 && raining && amount===1)setPhase('الخزّان ممتلئ. أوقف المطر أو افتح الري.');
+  if(demo<0 && watering && amount===0&&!raining&&!runoff){watering=false;setPhase('انتهى الماء المخزّن. شغّل المطر لإعادة التعبئة.');}
+  const pct=Math.round(amount*100);
+  get('level').value=pct;get('percent').textContent=pct.toLocaleString('ar-OM')+'٪';
+  for(const [id,on,label] of [['rain',raining,raining?'أوقف المطر':'شغّل المطر'],['water',watering,watering?'أغلق الري':'افتح الري'],['rotate',spin,'دوران تلقائي']]){
+    const el=get(id);
+    if(el.textContent!==label)el.textContent=label;
+    if(el.getAttribute('aria-pressed')!==String(on))el.setAttribute('aria-pressed',on);
+  }
+}
+let last;
+function frame(now){
+  update(Math.min(.05,(now-(last??now))/1000));last=now;
+  width=canvas.clientWidth;height=canvas.clientHeight;
+  const ratio=Math.min(devicePixelRatio||1,2);
+  if(canvas.width!==Math.round(width*ratio)||canvas.height!==Math.round(height*ratio)){
+    canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio);
+  }
+  ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
+  const basis=camera();
+  drawFaces(ground,basis);
+  if(pitch>0)drawShadows(basis);
+  faces=[];waterEffects();drawFaces(model.concat(faces),basis);marker(basis);
+  requestAnimationFrame(frame);
+}
+const touches=new Map();
+let pinchDistance=0;
+canvas.addEventListener('pointerdown',e=>{
+ spin=false;touches.set(e.pointerId,[e.clientX,e.clientY]);canvas.setPointerCapture(e.pointerId);pointer=[e.clientX,e.clientY];pinchDistance=0;
+});
+canvas.addEventListener('pointermove',e=>{
+ if(!touches.has(e.pointerId))return;
+ touches.set(e.pointerId,[e.clientX,e.clientY]);
+ if(touches.size===2){
+ const [a,b]=[...touches.values()],distance=Math.hypot(a[0]-b[0],a[1]-b[1]);
+ if(pinchDistance>0)zoomBy(distance/pinchDistance);
+ pinchDistance=distance;pointer=null;return;
+ }
+ if(touches.size===1&&pointer){yaw+=(pointer[0]-e.clientX)*.008;pitch=clamp(pitch+(e.clientY-pointer[1])*.007,-1.5,1.55);}
+ pointer=[e.clientX,e.clientY];
+});
+for(const name of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(name,e=>{
+ touches.delete(e.pointerId);pinchDistance=0;pointer=touches.size===1?[...touches.values()][0]:null;
+});
+canvas.addEventListener('wheel',e=>{e.preventDefault();zoomBy(Math.exp(-e.deltaY*.0012));},{passive:false});
+canvas.addEventListener('keydown',e=>{
+  const turns={ArrowLeft:[.13,0],ArrowRight:[-.13,0],ArrowUp:[0,.13],ArrowDown:[0,-.13]};
+  if(!turns[e.key])return;
+  e.preventDefault();spin=false;yaw+=turns[e.key][0];pitch=clamp(pitch+turns[e.key][1],-.35,1.55);
+});
+get('benefit').onclick=()=>get('about').showModal();
+get('closeAbout').onclick=()=>get('about').close();
+get('fullscreen').onclick=async()=>{
+ const scene=document.querySelector('.scene');
+ if(document.fullscreenElement){await document.exitFullscreen();return;}
+ if(scene.requestFullscreen){try{await scene.requestFullscreen();}catch{scene.classList.toggle('expanded');}}
+ else scene.classList.toggle('expanded');
+};
+get('zoomIn').onclick=()=>zoomBy(1.18);
+get('zoomOut').onclick=()=>zoomBy(1/1.18);
+get('homeView').onclick=()=>{yaw=.72;pitch=.47;zoom=1;spin=false;view.textContent='اسحب للدوران · قرّب بإصبعين';};
+get('topView').onclick=()=>{yaw=0;pitch=1.55;zoom=1;spin=false;view.textContent='اسحب للدوران · قرّب بإصبعين';};
+get('reset').onclick=reset;
+get('rotate').onclick=()=>spin=!spin;
+get('demo').onclick=()=>{reset();demo=0;};
+get('rain').onclick=()=>{demo=-1;raining=!raining;setPhase(raining?'المطر يملأ الخزّان عبر حوض التجميع.':'توقّف المطر. افتح الري لاستخدام الماء المخزّن.');};
+get('water').onclick=()=>{
+  demo=-1;
+  if(!watering&&amount===0){setPhase('شغّل المطر أولًا ليصل الماء إلى الخزّان.');return;}
+  watering=!watering;setPhase(watering?'الماء المخزّن يروي التربة.':'انتهت التجربة ووصل الماء إلى النبتة.');
+};
+get('parts').onclick=e=>{
+  const button=e.target.closest('button[data-part]');if(!button)return;
+  selected=Number(button.dataset.part);
+  for(const item of get('parts').querySelectorAll('button'))item.setAttribute('aria-pressed',item===button);
+  get('detail').textContent=fixedParts[selected].info;
+};
+requestAnimationFrame(frame);
+</script></html>
